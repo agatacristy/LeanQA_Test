@@ -93,6 +93,17 @@ public class ApiCoreRequests {
 
     }
 
+    @Step("Make a DELETE-request")
+    public Response makeDeleteRequest (String url, String token, String cookie){
+        return given()
+                .filter(new AllureRestAssured())
+                .header(new Header("x-csrf-token", token))
+                .cookie("auth_sid", cookie)
+                .delete(url)
+                .andReturn();
+
+    }
+
     @Step("Create a new user")
     public String createUser(Map<String, String> userData){
         JsonPath responseCreateAuth = makePostRequestJsonPath("https://playground.learnqa.ru/api/user", userData);
