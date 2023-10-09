@@ -1,8 +1,6 @@
 package tests;
 
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
+import io.qameta.allure.*;
 import io.restassured.response.Response;
 import lib.ApiCoreRequests;
 import lib.Assertions;
@@ -21,6 +19,7 @@ public class UserGetTest extends BaseTestCase {
     @Test
     @Description("Try to get user data without authentication")
     @DisplayName("Without authentication")
+    @Flaky
     public void testGetUserDataNotAuth(){
         Response responseUserData = apiCoreRequests.makeGetRequest("https://playground.learnqa.ru/api/user/2");
 
@@ -33,6 +32,7 @@ public class UserGetTest extends BaseTestCase {
     @Test
     @Description("Try to get user details")
     @DisplayName("User details")
+    @Severity(SeverityLevel.CRITICAL)
     public void testGetUserDetailsAuthAsSameUser(){
         Map<String,String> authData = new HashMap<>();
         authData.put("email","vinkotov@example.com");
@@ -56,6 +56,7 @@ public class UserGetTest extends BaseTestCase {
     @Test
     @Description("Try to get user data for other user")
     @DisplayName("Other user details")
+    @Severity(SeverityLevel.NORMAL)
     public void testGetUserDetailsAuthAsOtherUser(){
         Map<String,String> authData = new HashMap<>();
         authData.put("email","vinkotov@example.com");

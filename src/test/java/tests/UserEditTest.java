@@ -1,8 +1,6 @@
 package tests;
 
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
+import io.qameta.allure.*;
 import io.restassured.response.Response;
 import lib.ApiCoreRequests;
 import lib.Assertions;
@@ -22,6 +20,7 @@ public class UserEditTest extends BaseTestCase {
     @Test
     @Description("This test successfully change firstName for the user")
     @DisplayName("Change firstName")
+    @Severity(SeverityLevel.CRITICAL)
     public void testEditJustCreatedTest(){
         //Generate User
         Map<String, String> userData = DataGenerate.getRegistrationData();
@@ -57,6 +56,7 @@ public class UserEditTest extends BaseTestCase {
     @Test
     @Description("Try to change user data without authentication")
     @DisplayName("Edit data without authentication")
+    @Severity(SeverityLevel.TRIVIAL)
     public void testEditWithoutAuth(){
         Map<String, String> userData = DataGenerate.getRegistrationData();
         String userId = apiCoreRequests.createUser(userData);
@@ -75,6 +75,7 @@ public class UserEditTest extends BaseTestCase {
     @Test
     @Description("Try to change data for other user")
     @DisplayName("Change data for other user")
+    @Severity(SeverityLevel.TRIVIAL)
     public void testEditByOtherUser(){
         //Generate User1
         Map<String, String> userData1 = DataGenerate.getRegistrationData();
@@ -127,6 +128,7 @@ public class UserEditTest extends BaseTestCase {
     @Test
     @Description("Change email to the email without @")
     @DisplayName("Email with incorrect value")
+    @Severity(SeverityLevel.NORMAL)
     public void testEditIncorrectEmail(){
         //Generate User
         Map<String, String> userData = DataGenerate.getRegistrationData();
@@ -166,6 +168,7 @@ public class UserEditTest extends BaseTestCase {
     @Test
     @Description("Change firstName to the very short firstName")
     @DisplayName("Very short firstName")
+    @Severity(SeverityLevel.NORMAL)
     public void testEditShortFirstName(){
         //Generate User
         Map<String, String> userData = DataGenerate.getRegistrationData();

@@ -1,8 +1,6 @@
 package tests;
 
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
+import io.qameta.allure.*;
 import io.restassured.response.Response;
 import lib.ApiCoreRequests;
 import lib.Assertions;
@@ -24,6 +22,7 @@ public class UserRegisterTest extends BaseTestCase {
     @Test
     @Description("Try to create user with existing email")
     @DisplayName("Existing email")
+    @Severity(SeverityLevel.MINOR)
     public void testCreateUserWithExistingEmail(){
         String email = "vinkotov@example.com";
         Map<String,String> userData = new HashMap<>();
@@ -40,6 +39,7 @@ public class UserRegisterTest extends BaseTestCase {
     @Test
     @Description("This test successfully creats the user")
     @DisplayName("Successfully creation")
+    @Severity(SeverityLevel.BLOCKER)
     public void testCreateUserSuccessfully(){
         String email = DataGenerate.getRandomEmail();
         Map<String,String> userData = DataGenerate.getRegistrationData();
@@ -54,6 +54,7 @@ public class UserRegisterTest extends BaseTestCase {
     @Test
     @Description("Try to create a user with incorrect email")
     @DisplayName("Incorrect email")
+    @Severity(SeverityLevel.NORMAL)
     public void testCreateUserWithIncorrectEmail(){
         String email = DataGenerate.getRandomEmail();
         Map<String,String> data = new HashMap<>();
@@ -69,6 +70,7 @@ public class UserRegisterTest extends BaseTestCase {
 
     @Description("Try to create a user when one of the required parameters are absent")
     @DisplayName("Without one of the parameter")
+    @Severity(SeverityLevel.NORMAL)
     @ParameterizedTest
     @ValueSource(strings = {"email","password", "username", "firstName", "lastName"})
     public void testCreateUserWithParameter(String parameter){
@@ -101,6 +103,7 @@ public class UserRegisterTest extends BaseTestCase {
     @Test
     @Description("Try to create a user with very long username")
     @DisplayName("Very long username")
+    @Severity(SeverityLevel.NORMAL)
     public void testCreateUserWithLongUserName(){
         String email = DataGenerate.getRandomEmail();
         Map<String,String> data = new HashMap<>();
